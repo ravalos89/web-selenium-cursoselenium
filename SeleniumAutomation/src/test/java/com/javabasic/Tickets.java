@@ -43,7 +43,7 @@ public class Tickets {
 	
 	public void verificarcostoTicket() {
 		if(estudiante==true) {
-			System.out.println("Eres un ESTUDIANTE el precio de tu ticket es: $"+precioEstudiante);
+			System.out.println("Eres un ESTUDIANTES el precio de tu ticket es: $"+precioEstudiante);
 		}else if(edad>18){
 			System.out.println("Eres un ADULTO el precio de tu ticket es: $"+precioAdulto);			
 		}else {
