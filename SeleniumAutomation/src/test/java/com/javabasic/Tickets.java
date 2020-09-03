@@ -96,7 +96,7 @@ public class Tickets {
 		tickets.precioNino();
 		tickets.precioEstudiante();
 		
-		tickets.sumarTicket(true, 40);
+		tickets.sumarTicket(true, 40); 
 
 	}
 

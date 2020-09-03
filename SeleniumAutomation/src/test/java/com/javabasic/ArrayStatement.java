@@ -27,6 +27,10 @@ public class ArrayStatement {
 		
 		getNombreRol(persona);
 		
+		Tickets tickets = new Tickets(10, 10, true);
+		
+		tickets.sumarTicket(20);
+		
 		
  	}
 	
