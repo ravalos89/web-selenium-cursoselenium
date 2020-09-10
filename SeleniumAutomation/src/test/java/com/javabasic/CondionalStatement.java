@@ -1,5 +1,9 @@
 package com.javabasic;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
 public class CondionalStatement {
 
 	public static void main(String[] args) {
@@ -7,6 +11,21 @@ public class CondionalStatement {
 		int velocidad = 60;
 		int limiteVelocidad = 70;
 		
+		DesiredCapabilities caps = DesiredCapabilities.chrome();
+		caps.setCapability("browser", "chrome");
+		caps.setCapability("name", "Docker1"+ "123uh4");
+		caps.setCapability("deviceName", "S9 Ricardo's Samsung");
+		caps.setCapability("platFormName", "Android");
+		caps.setCapability("platformVersion", "10");
+		caps.setCapability("bundleId", "33ERR-");
+		caps.setCapability("app", "com.facebook.android");
+		
+		
+		DesiredCapabilities caps2 = DesiredCapabilities.android();
+		caps2.setCapability("browser", "chrome");
+		caps2.setCapability("name", "Selenium");
+		
+		WebDriver driver = new RemoteWebDriver(caps);
 //		// IF
 //		if(velocidad > limiteVelocidad) {
 //			System.out.println("Multa!!!");
