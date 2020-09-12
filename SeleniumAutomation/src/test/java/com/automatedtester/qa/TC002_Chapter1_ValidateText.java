@@ -13,6 +13,7 @@ import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class TC002_Chapter1_ValidateText {
  
@@ -48,7 +49,9 @@ public class TC002_Chapter1_ValidateText {
 	  //STEP 4
 	  Reporter.log("Validate text Assertion");
 	  String lbl_assert= driver.findElement(By.xpath("//div[@id='divontheleft']")).getText();
-	  Assert.assertEquals(lbl_assert, "Assert that this text is on the page");
+	  SoftAssert softAssert = new SoftAssert();
+	  softAssert.assertEquals(lbl_assert, "Assert that this text is on the page1729622");
+//	  Assert.assertEquals(lbl_assert, "Assert that this text is on the page");
 	  Thread.sleep(2000);
 	//STEP 5
 	  Reporter.log("Navigate Home page clicking \"Home Page\" link");
@@ -58,6 +61,8 @@ public class TC002_Chapter1_ValidateText {
 	  //STEP 6
 	  Reporter.log("Close Browser");
 	  driver.close();
+	  
+	  softAssert.assertAll();
 	  
 	  
 	  
