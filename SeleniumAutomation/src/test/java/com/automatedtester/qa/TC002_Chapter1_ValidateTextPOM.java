@@ -1,0 +1,55 @@
+package com.automatedtester.qa;
+
+import org.testng.annotations.Test;
+
+import com.project.base.Base;
+import com.project.base.GlobalVariables;
+import com.project.poclasses.Chapter1Page;
+import com.project.poclasses.HomePage;
+
+import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
+
+public class TC002_Chapter1_ValidateTextPOM {
+
+	WebDriver driver;
+	Base base;
+	HomePage home;
+	Chapter1Page chapter1;
+
+	@BeforeTest
+	public void beforeTest() {
+
+		base = new Base(driver);
+		driver = base.chromedriverConnection();
+		home = new HomePage(driver);
+		chapter1 = new Chapter1Page(driver);
+	}
+
+	@Test
+	public void TC002() {
+
+		// STEP 1
+		base.launchBrowser(GlobalVariables.SELENIUM_MAIN_URL);
+
+		// STEP 2
+		home.clickChapter1();
+
+		// STEP 3
+		chapter1.selectTypeSelenium("Selenium IDE");
+
+		// STEP 4
+		chapter1.validateTextChapter1("Assert that this text is on the page");
+
+		// STEP 5
+		chapter1.navigateHomePage();
+	}
+
+	@AfterTest
+	public void afterTest() {
+		// STEP 6
+		base.closeBrowser();
+	}
+
+}

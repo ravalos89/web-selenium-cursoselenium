@@ -1,8 +1,11 @@
 package com.project.base;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -120,6 +123,32 @@ public class Base {
 		} catch(NoSuchSessionException e) {
 			reporterLog("Closing Browser is failed");
 		}
+	}
+	
+	/**
+	 * Get Text
+	 * @author ricardo.avalos
+	 * @param locator
+	 * @return object value
+	 */
+	
+	public String getText(By locator) {
+		try {
+			return driver.findElement(locator).getText();
+		}catch(NoSuchElementException e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * Assertion two String values
+	 * @author ricardo.avalos
+	 * @param expectedValue, actuaValue
+	 * @return NA
+	 */
+	
+	public void hardAssertion(String actualValue, String expectedValue) {
+		assertEquals(actualValue, expectedValue);
 	}
 
 }

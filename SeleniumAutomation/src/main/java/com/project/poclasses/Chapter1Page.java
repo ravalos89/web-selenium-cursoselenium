@@ -14,6 +14,11 @@ public class Chapter1Page extends Base{
 	By rad_unique = By.xpath("//input[@id='radiobutton']");
 	By sdd_selenium = By.xpath("//select[@id='selecttype']");
 	By link_homePage = By.xpath("//a[contains(text(), \"Home\")]");
+	By lbl_Assertion= By.xpath("//div[@id='divontheleft']");
+	By radio_unique = By.xpath("//input[@id='radiobutton']");
+	By select_selenium = By.xpath("//select[@id='selecttype']");
+	By dropdown_selenium = By.xpath("//select[@id='selecttype']");
+	
 	
 	/**
 	 * Click Radio button
@@ -47,5 +52,16 @@ public class Chapter1Page extends Base{
 		reporterLog("Navigate Home Page");
 		waitForElementPresent(link_homePage);
 		click(link_homePage);
+	}
+	
+	/**
+	 * Validate Text in Chapter 1
+	 */
+	
+	public void validateTextChapter1(String expectedValue) {
+		reporterLog("Verify this text: "+expectedValue);
+		waitForElementPresent(lbl_Assertion);
+		String actualValue = getText(lbl_Assertion);
+		hardAssertion(actualValue, expectedValue);
 	}
 }
