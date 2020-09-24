@@ -22,7 +22,7 @@ public class Chapter1Page extends Base{
 	
 	/**
 	 * Click Radio button
-	 * @author ricardo.avalos
+	 * @author ricardo.avalosss
 	 */
 	
 	public void clickRadio() {
