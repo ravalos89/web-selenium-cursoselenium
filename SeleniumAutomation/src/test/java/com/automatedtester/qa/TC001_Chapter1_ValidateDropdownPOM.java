@@ -1,5 +1,8 @@
 package com.automatedtester.qa;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -16,18 +19,23 @@ public class TC001_Chapter1_ValidateDropdownPOM {
 	Base base;
 	HomePage home;
 	Chapter1Page chapter1;
+	String valueSeleniumType, value2;
 
 	@BeforeTest
-	public void beforeTest() {
+	public void beforeTest() throws FileNotFoundException {
 		
 		base = new Base(driver);
 		driver = base.chromedriverConnection();
 		home = new HomePage(driver);
 		chapter1 = new Chapter1Page(driver);
+		
+		//Get Data from JSON file
+		this.valueSeleniumType = base.getJSONValue(this.getClass().getSimpleName(), "seleniumType");
+		this.value2 = base.getJSONValue(this.getClass().getSimpleName(), "value2");
 	}
 
 	@Test
-	public void TC001() {
+	public void TC001() throws IOException {
 		
 		//STEP 1
 		base.launchBrowser(GlobalVariables.SELENIUM_MAIN_URL);
@@ -39,7 +47,7 @@ public class TC001_Chapter1_ValidateDropdownPOM {
 		chapter1.clickRadio();
 		
 		//STEP 4
-		chapter1.selectTypeSelenium("Selenium Code");
+		chapter1.selectTypeSelenium(valueSeleniumType);
 		
 		// STEP 5
 		chapter1.navigateHomePage();
