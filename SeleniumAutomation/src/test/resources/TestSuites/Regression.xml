@@ -10,7 +10,7 @@
   
   <test name="TC002">
     <classes>
-      <class name="com.automatedtester.qa.TC001_Chapter1_ValidateDropdownPOM"/>
+      <class name="com.automatedtester.qa.TC002_Chapter1_ValidateText"/>
     </classes>
   </test> <!-- Test -->
   
