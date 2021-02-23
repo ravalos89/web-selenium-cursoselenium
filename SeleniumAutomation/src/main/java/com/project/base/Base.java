@@ -2,8 +2,17 @@ package com.project.base;
 
 import static org.testng.Assert.assertEquals;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
+import javax.imageio.ImageIO;
+
+import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchSessionException;
@@ -14,7 +23,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.Reporter;
+
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
 
 public class Base {
 	
@@ -45,9 +58,11 @@ public class Base {
 	 * Launch Browser
 	 * @author ricardo.avalos
 	 * @param url
+	 * @throws IOException 
 	 */
 	
-	public void launchBrowser(String url) {
+	public void launchBrowser(String url) throws IOException {
+		takeScreenshot("TC001", "Launch Browser");
 		reporterLog("Launch Browser "+ url);
 		driver.get(url);
 		driver.manage().window().maximize();
@@ -149,6 +164,47 @@ public class Base {
 	
 	public void hardAssertion(String actualValue, String expectedValue) {
 		assertEquals(actualValue, expectedValue);
+	}
+	
+	/**
+	 * Get Data from JSON file (Directly)
+	 * @author Ricardo Avalos
+	 * @param jsonFile, jsonKey
+	 * @return jsonValue
+	 * @throws FileNotFoundException 
+	 */	
+	public String getJSONValue(String jsonFileObj, String jsonKey) throws FileNotFoundException {
+		try {
+			
+		  // JSON Data
+		  InputStream inputStream = new FileInputStream(GlobalVariables.PATH_JSON_DATA + jsonFileObj + ".json");
+		  JSONObject jsonObject = new JSONObject(new JSONTokener(inputStream));
+		  
+		  // Get Data
+		  String jsonValue = (String) jsonObject.getJSONObject(jsonFileObj).get(jsonKey);
+		  return jsonValue;
+		  
+		} catch (FileNotFoundException e){
+			Assert.fail("JSON file is not found");
+			return null;			
+		}		
+	}
+	
+	/**
+	 * Take screenshot
+	 * @author Ricardo Avalos
+	 * @param locator
+	 * @return locator
+	 * @throws IOException
+	 */	
+	public void takeScreenshot(String testcase, String fileName) throws IOException{
+		try {
+			Screenshot screenshot = new AShot().takeScreenshot(driver);
+			ImageIO.write(screenshot.getImage(),"PNG",new File("./test-output/screenshots/"+testcase+"/"+fileName+".png"));
+		} catch (IOException e){
+			System.out.println(e.getMessage());
+		}
+						
 	}
 
 }
