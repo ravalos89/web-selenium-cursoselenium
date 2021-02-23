@@ -6,6 +6,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class CondionalStatement {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int velocidad = 60;

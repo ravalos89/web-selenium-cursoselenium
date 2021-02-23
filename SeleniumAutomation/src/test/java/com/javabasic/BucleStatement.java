@@ -32,6 +32,7 @@ public class BucleStatement {
 		
 		int rows = 11;
 		String nombresTable = "Jose";
+		@SuppressWarnings("unused")
 		String getNombre;
 		
 		for(int i=1; i <= rows; i++) {
